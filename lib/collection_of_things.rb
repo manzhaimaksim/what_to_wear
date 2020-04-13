@@ -3,7 +3,7 @@ class CollectionOfThings
 
   def initialize(collection)
     @collection = collection
-    @categories = @collection.map(&:category).uniq  # хранит массив с категориями одежды
+    @categories = @collection.map(&:category).uniq # хранит массив с категориями одежды
     @wear_for_user = []
   end
 
