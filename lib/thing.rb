@@ -17,4 +17,8 @@ class Thing
     @category = params[:category]
     @temp_range = params[:temp_range]
   end
+
+  def suitable_for_weather?(temperature)
+    temperature.between?(@temp_range)
+  end
 end
