@@ -11,7 +11,8 @@ class CollectionOfThings
     @categories.each do |category|
       @wear_for_user << things_of_same_type(category).select do |thing|
         thing.suitable_for_weather?(temperature)
-      end.sample
+      end
+      .sample
     end
   end
 
