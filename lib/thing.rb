@@ -1,4 +1,6 @@
 class Thing
+  attr_reader :title, :category, :temp_range
+
   def self.things_from_folder(paths)
     things = []
     paths.each do |path|
@@ -20,5 +22,9 @@ class Thing
 
   def suitable_for_weather?(temperature)
     temperature.between?(@temp_range)
+  end
+
+  def to_s
+    "#{@title} (#{@category}) #{@temp_range}"
   end
 end
