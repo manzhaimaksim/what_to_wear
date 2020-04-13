@@ -1,13 +1,21 @@
 class CollectionOfThings
+  attr_reader :wear_for_user
+
   def initialize(collection)
     @collection = collection
-    @categories = []
+    @categories = @collection.map(&:category).uniq  # хранит массив с категориями одежды
+    @wear_for_user = []
   end
 
-  # возвращает массив с типами одежды
-  def categories_of_things
-    @categories = @collection.map(&:category).uniq
+  def what_to_wear(temperature)
+    @categories.each do |category|
+      @wear_for_user << things_of_same_type(category).select do |thing|
+        thing.suitable_for_weather?(temperature)
+      end.sample
+    end
   end
+
+  private
 
   # возвращает массив с объектами одной категории
   def things_of_same_type(type)
