@@ -21,7 +21,7 @@ class Thing
   end
 
   def suitable_for_weather?(temperature)
-    temperature.between?(@temp_range)
+    @temp_range.include?(temperature)
   end
 
   def to_s
