@@ -9,8 +9,7 @@ collection.things_from_folder(things_paths)
 puts 'Сколько градусов сегодня за окном? (можно с минусом)'
 user_input = STDIN.gets.to_i
 
-collection.what_to_wear(user_input)
 puts 'Предлагаем сегодня надеть:'
 puts
 
-collection.wear_for_user.each { |thing| puts thing unless thing.nil? }
+collection.what_to_wear(user_input).each { |thing| puts thing unless thing.nil? }
