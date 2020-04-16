@@ -6,10 +6,7 @@ class CollectionOfThings
   def things_from_folder(paths)
     paths.each do |path|
       lines = File.readlines(path, chomp: true, encoding: 'UTF-8')
-
-      lines[2] = lines[2].delete('()').split(', ').map(&:to_i)
-
-      params = { title: lines[0], category: lines[1], temp_range: lines[2][0]..lines[2][1] }
+      params = { title: lines[0], category: lines[1], temp_range: lines[2] }
       @collection << Thing.new(params)
     end
   end
