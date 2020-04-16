@@ -8,7 +8,11 @@ collection_of_thing = CollectionOfThings.new(things)
 puts 'Сколько градусов сегодня за окном? (можно с минусом)'
 user_input = STDIN.gets.to_i
 
-puts 'Предлагаем сегодня надеть:'
-puts
+wear_for_user = collection_of_thing.what_to_wear(user_input)
 
-puts collection_of_thing.what_to_wear(user_input)
+if wear_for_user.any?
+  puts 'Предлагаем сегодня надеть:'
+  puts wear_for_user
+else
+  puts 'В нашей колекции отсутствует подходящая одежда'
+end
