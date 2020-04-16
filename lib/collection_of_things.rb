@@ -1,13 +1,13 @@
 class CollectionOfThings
-  def initialize
-    @collection = []
+  def initialize(paths)
+    @collection = things_from_folder(paths)
   end
 
   def things_from_folder(paths)
-    paths.each do |path|
+    paths.map do |path|
       lines = File.readlines(path, chomp: true, encoding: 'UTF-8')
       params = { title: lines[0], category: lines[1], temp_range: lines[2] }
-      @collection << Thing.new(params)
+      Thing.new(params)
     end
   end
 
