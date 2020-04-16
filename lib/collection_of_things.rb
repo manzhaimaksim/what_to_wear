@@ -19,9 +19,8 @@ class CollectionOfThings
   def what_to_wear(temperature)
     categories_of_things.filter_map do |category|
       things_of_same_type(category).select do |thing|
-        thing.suitable_for_weather?(temperature) unless thing.nil?
-      end
-      .sample
+        thing.suitable_for_weather?(temperature)&!nil?
+      end.sample
     end
   end
 
