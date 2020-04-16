@@ -8,17 +8,10 @@ class Thing
   end
 
   def suitable_for_weather?(temperature)
-    convert_string_to_range(@temp_range).include?(temperature)
+    @temp_range.include?(temperature)
   end
 
   def to_s
-    "#{@title} (#{@category}) #{@temp_range}"
-  end
-
-  private
-
-  def convert_string_to_range(string)
-    string = string.delete('()').split(', ').map(&:to_i)
-    string[0]..string[1]
+    "#{@title} (#{@category}) (#{@temp_range.min}, #{@temp_range.max})"
   end
 end
