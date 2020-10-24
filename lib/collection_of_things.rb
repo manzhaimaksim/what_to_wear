@@ -6,20 +6,15 @@ class CollectionOfThings
   def self.things_from_folder(paths)
     paths.map do |path|
       lines = File.readlines(path, chomp: true, encoding: 'UTF-8')
-      params = { title: lines[0], category: lines[1], temp_range: convert_string_to_range(lines[2]) }
+      params = { title: lines[0], category: lines[1], temp_range: Range.new(*lines[2].delete('()').split(', ').map(&:to_i)) }
       Thing.new(params)
     end
-  end
-
-  def self.convert_string_to_range(string)
-    string = string.delete('()').split(', ').map(&:to_i)
-    string[0]..string[1]
   end
 
   def what_to_wear(temperature)
     categories_of_things.filter_map do |category|
       things_of_same_type(category).select do |thing|
-        thing.suitable_for_weather?(temperature)&!nil?
+        thing&.suitable_for_weather?(temperature)
       end.sample
     end
   end
