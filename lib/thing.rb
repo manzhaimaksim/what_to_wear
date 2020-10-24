@@ -4,7 +4,7 @@ class Thing
   def initialize(params)
     @title = params[:title]
     @category = params[:category]
-    @temp_range = params[:temp_range]
+    @temp_range = Range.new(*params[:temp_range].delete('()').split(', ').map(&:to_i))
   end
 
   def suitable_for_weather?(temperature)

@@ -10,17 +10,21 @@ describe Thing do
     it 'creates a new object' do
       expect(@thing.title).to eq 'Сомбреро'
       expect(@thing.category).to eq 'Головной убор'
-      expect(@thing.temp_range).to eq '(16, 28)'
+      expect(@thing.temp_range).to eq (16..28)
     end
   end
 
   describe '#suitable_for_weather?' do
-    it 'returns true for the set temperature' do
-      expect(@thing.suitable_for_weather?(20)).to be_truthy
+    context 'thing suitable for temperature' do
+      it 'returns true for the set temperature' do
+        expect(@thing.suitable_for_weather?(20)).to eq(true)
+      end
     end
 
-    it 'returns false for the set temperature' do
-      expect(@thing.suitable_for_weather?(0)).to be_falsey
+    context 'the thing is not suitable for the temperature' do
+      it 'returns false for the set temperature' do
+        expect(@thing.suitable_for_weather?(0)).to eq(false)
+      end
     end
   end
 

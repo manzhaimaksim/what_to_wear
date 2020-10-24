@@ -3,7 +3,9 @@ require '../lib/collection_of_things'
 
 describe CollectionOfThings do
   before(:example) do
-    @collection_of_things = CollectionOfThings.new(Dir[__dir__ + '/fixtures/*.txt'])
+    things_paths = Dir["#{__dir__}/fixtures/*.txt"]
+    things = CollectionOfThings.things_from_folder(things_paths)
+    @collection_of_things = CollectionOfThings.new(things)
   end
 
   describe '.new' do
