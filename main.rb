@@ -1,5 +1,5 @@
-require_relative 'lib/thing'
-require_relative 'lib/collection_of_things'
+require_relative './lib/thing'
+require_relative './lib/collection_of_things'
 
 things_paths = Dir["#{__dir__}/data/*.txt"]
 things = CollectionOfThings.things_from_folder(things_paths)

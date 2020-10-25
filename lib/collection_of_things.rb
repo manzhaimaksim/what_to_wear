@@ -1,14 +1,14 @@
 class CollectionOfThings
-  def initialize(things)
-    @collection = things
-  end
-
   def self.things_from_folder(paths)
     paths.map do |path|
       lines = File.readlines(path, chomp: true, encoding: 'UTF-8')
       params = { title: lines[0], category: lines[1], temp_range: lines[2] }
       Thing.new(params)
     end
+  end
+
+  def initialize(things)
+    @collection = things
   end
 
   def what_to_wear(temperature)

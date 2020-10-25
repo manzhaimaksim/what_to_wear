@@ -1,5 +1,5 @@
 require 'spec_helper'
-require '../lib/collection_of_things'
+require 'collection_of_things'
 
 describe CollectionOfThings do
   before(:example) do
@@ -15,20 +15,26 @@ describe CollectionOfThings do
   end
 
   describe '#what_to_wear' do
+    context 'things is exist' do
+      it 'returns things for set temperature' do
+        expect(@collection_of_things.what_to_wear(0).size).to eq 2
+      end
+
+      it 'returns things of different types' do
+        expect(@collection_of_things.what_to_wear(0).map(&:category)).to eq ['Головной убор', 'Верхняя одежда']
+      end
+    end
+
+    context 'things is not exist' do
+      it 'no suitable things' do
+        expect(@collection_of_things.what_to_wear(-21).size).to eq 0
+      end
+    end
+  end
+
+  describe '.things_from_folder' do
     it 'returns array of things' do
-      expect(@collection_of_things.what_to_wear(10)).to be_an Array
-    end
-
-    it 'returns an array size of 0' do
-      expect(@collection_of_things.what_to_wear(-30).size).to eq 0
-    end
-
-    it 'returns an array size of 1' do
-      expect(@collection_of_things.what_to_wear(-10).size).to eq 1
-    end
-
-    it 'returns an array size of 2' do
-      expect(@collection_of_things.what_to_wear(3).size).to eq 2
+      expect(CollectionOfThings.things_from_folder(Dir["#{__dir__}/data/*.txt"])).to be_an Array
     end
   end
 end

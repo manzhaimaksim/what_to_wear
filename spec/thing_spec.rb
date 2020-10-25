@@ -1,5 +1,5 @@
 require 'spec_helper'
-require '../lib/thing'
+require 'thing'
 
 describe Thing do
   before(:example) do
@@ -16,13 +16,13 @@ describe Thing do
 
   describe '#suitable_for_weather?' do
     context 'thing suitable for temperature' do
-      it 'returns true for the set temperature' do
+      it 'returns boolean for the set temperature' do
         expect(@thing.suitable_for_weather?(20)).to eq(true)
       end
     end
 
     context 'the thing is not suitable for the temperature' do
-      it 'returns false for the set temperature' do
+      it 'returns boolean for the set temperature' do
         expect(@thing.suitable_for_weather?(0)).to eq(false)
       end
     end
