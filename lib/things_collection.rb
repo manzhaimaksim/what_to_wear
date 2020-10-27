@@ -1,5 +1,5 @@
-class CollectionOfThings
-  def self.things_from_folder(paths)
+class ThingsCollection
+  def self.from_folder(paths)
     paths.map do |path|
       lines = File.readlines(path, chomp: true, encoding: 'UTF-8')
       params = { title: lines[0], category: lines[1], temp_range: lines[2] }

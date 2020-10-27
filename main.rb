@@ -1,14 +1,14 @@
 require_relative './lib/thing'
-require_relative './lib/collection_of_things'
+require_relative './lib/things_collection'
 
 things_paths = Dir["#{__dir__}/data/*.txt"]
-things = CollectionOfThings.things_from_folder(things_paths)
-collection_of_thing = CollectionOfThings.new(things)
+things = ThingsCollection.from_folder(things_paths)
+things_collection = ThingsCollection.new(things)
 
 puts 'Сколько градусов сегодня за окном? (можно с минусом)'
 user_input = STDIN.gets.to_i
 
-wear_for_user = collection_of_thing.what_to_wear(user_input)
+wear_for_user = things_collection.what_to_wear(user_input)
 
 if wear_for_user.any?
   puts 'Предлагаем сегодня надеть:'
